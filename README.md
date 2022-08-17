@@ -1,3 +1,3 @@
 ### GitHub Page link:
 
-To see the GitHub page live [Click Here!](link "Click Here!")
+To see the Calculator live [Click Here!](https://rayhanalkavey.github.io/calculator/ "Click Here!")
