@@ -54,11 +54,9 @@ operations.forEach(function (operation) {
     }
     clearVar(operationSymbol);
     lastOperation = operationSymbol;
-    console.log(lastOperation);
-    console.log(result);
   });
 });
-function clearVar(symbol) {
+function clearVar(symbol = "") {
   display1Value += display2Value + " " + symbol + " ";
   display1.innerText = display1Value;
   display2.innerText = "";
@@ -66,6 +64,7 @@ function clearVar(symbol) {
   display3.innerText = result;
 }
 function mathOperation() {
+  console.log(lastOperation);
   if (lastOperation === "*") {
     result = parseFloat(result) * parseFloat(display2Value);
   } else if (lastOperation === "+") {
@@ -81,3 +80,15 @@ function mathOperation() {
   //   result = parseFloat(result * -1);
   // }
 }
+equalBtn.addEventListener("click", function (value) {
+  if (!display1Value || !display2Value) {
+    return;
+  }
+  haveDot = false;
+  mathOperation();
+  clearVar();
+  display2.innerText = result;
+  display3.innerText = "";
+  display2Value = result;
+  display1Value = "";
+});
