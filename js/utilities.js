@@ -10,7 +10,7 @@ const operations = document.querySelectorAll(".operation");
 const equalBtn = document.querySelector(".equal");
 const clearAllBtn = document.querySelector(".clear-all");
 const clearLastBtn = document.querySelector(".clear-last");
-
+const buttons = document.getElementsByTagName("button");
 // numbers.forEach((number) => {
 //   number.addEventListener("click", function (value) {
 //     const clickedString = value.target.innerText;
@@ -64,7 +64,7 @@ function clearVar(symbol = "") {
   display3.innerText = result;
 }
 function mathOperation() {
-  console.log(lastOperation);
+  // console.log(lastOperation);
   if (lastOperation === "*") {
     result = parseFloat(result) * parseFloat(display2Value);
   } else if (lastOperation === "+") {
@@ -100,3 +100,43 @@ clearAllBtn.addEventListener("click", function () {
   display2Value = "";
   result = "";
 });
+clearLastBtn.addEventListener("click", function () {
+  display2.innerText = "0";
+  display2Value = "";
+});
+window.addEventListener("keydown", function (keyPressed) {
+  if (
+    keyPressed.key === "0" ||
+    keyPressed.key === "1" ||
+    keyPressed.key === "2" ||
+    keyPressed.key === "3" ||
+    keyPressed.key === "4" ||
+    keyPressed.key === "5" ||
+    keyPressed.key === "6" ||
+    keyPressed.key === "7" ||
+    keyPressed.key === "8" ||
+    keyPressed.key === "9" ||
+    keyPressed.key === "." ||
+    keyPressed.key === "+" ||
+    keyPressed.key === "-" ||
+    keyPressed.key === "/" ||
+    keyPressed.key === "*" ||
+    keyPressed.key === "%" ||
+    keyPressed.key === "C" ||
+    keyPressed.key === "c"
+  ) {
+    console.log(typeof keyPressed.key, keyPressed.key);
+    clickKeyboardBtn(keyPressed.key);
+  } else if (keyPressed.key === "=" || keyPressed.key === "Enter") {
+    clickKeyboardBtn("=");
+  }
+});
+//Make keyboard functionable with the claculator
+function clickKeyboardBtn(keyP) {
+  for (const button of buttons) {
+    // console.log(typeof button.innerText);
+    if (button.innerText === keyP) {
+      button.click();
+    }
+  }
+}
