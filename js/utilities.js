@@ -18,20 +18,49 @@ const clearLastBtn = document.querySelector(".clear-last");
 //     console.log(clickedValue, typeof clickedValue);
 //   });
 // });
+//Variables
+let result = null;
 let display1Value = "";
+let display2Value = "";
+let lastOperation = "";
 let haveDot = false;
-console.log(display1.innerText);
+//ParT For numbers
 for (const number of numbers) {
   number.addEventListener("click", function (value) {
     const clickedString = value.target.innerText;
+    //NotE :Multiple dot validation (We cannot press multiple dot)
     if (clickedString === "." && !haveDot) {
-      console.log("Make dot true");
       haveDot = true;
     } else if (clickedString === "." && haveDot) {
-      console.log("dote true so return");
       return;
     }
-    display1Value += clickedString;
-    display2.innerText = display1Value;
+    display2Value += clickedString;
+    display2.innerText = display2Value;
   });
+}
+//ParT For operations
+operations.forEach(function (operation) {
+  operation.addEventListener("click", function (event) {
+    // console.log("clivk");
+    if (!display2Value) console.log(result);
+    //NotE :Multiple dot validation (We can press another dot after pressing a operation)
+    haveDot = false;
+    const operationSymbol = event.target.innerText; //+,-
+    //NotE :Have value or not befor operation start (have value or not validation)
+    if (display1Value && display2Value && lastOperation) {
+      // mathOperation();
+    } else {
+      result = parseFloat(display2Value);
+    }
+    clearVar(operationSymbol);
+    console.log(result);
+  });
+});
+function clearVar(symbol) {
+  display1Value += display2Value + " " + symbol + " ";
+
+  display1.innerText = display1Value;
+  display2.innerText = "";
+  display2Value = "";
+  display3.innerText = result;
 }
