@@ -48,19 +48,36 @@ operations.forEach(function (operation) {
     const operationSymbol = event.target.innerText; //+,-
     //NotE :Have value or not befor operation start (have value or not validation)
     if (display1Value && display2Value && lastOperation) {
-      // mathOperation();
+      mathOperation();
     } else {
       result = parseFloat(display2Value);
     }
     clearVar(operationSymbol);
+    lastOperation = operationSymbol;
+    console.log(lastOperation);
     console.log(result);
   });
 });
 function clearVar(symbol) {
   display1Value += display2Value + " " + symbol + " ";
-
   display1.innerText = display1Value;
   display2.innerText = "";
   display2Value = "";
   display3.innerText = result;
+}
+function mathOperation() {
+  if (lastOperation === "*") {
+    result = parseFloat(result) * parseFloat(display2Value);
+  } else if (lastOperation === "+") {
+    result = parseFloat(result) + parseFloat(display2Value);
+  } else if (lastOperation === "-") {
+    result = parseFloat(result) - parseFloat(display2Value);
+  } else if (lastOperation === "/") {
+    result = parseFloat(result) / parseFloat(display2Value);
+  } else if (lastOperation === "%") {
+    result = parseFloat(result) % parseFloat(display2Value);
+  }
+  // else if (lastOperation === "+/-") {
+  //   result = parseFloat(result * -1);
+  // }
 }
