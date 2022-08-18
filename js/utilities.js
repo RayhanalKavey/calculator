@@ -92,3 +92,11 @@ equalBtn.addEventListener("click", function (value) {
   display2Value = result;
   display1Value = "";
 });
+clearAllBtn.addEventListener("click", function () {
+  display1.innerText = "0";
+  display2.innerText = "0";
+  display3.innerText = "0";
+  display1Value = "";
+  display2Value = "";
+  result = "";
+});
